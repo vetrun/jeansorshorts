@@ -43,7 +43,7 @@ function jeansOrShorts(data) {
   if (data.main.temp_max < 295.15) {
     document.getElementById('jeansOrShorts').innerHTML = "<img src='images/jeans.jpg'/>";
   } else {
-    document.getElementById('jeansOrShorts').innerHTML = "<img src='images/shorts.png'/>";
+    document.getElementById('jeansOrShorts').innerHTML = "<img src='images/shorts.jpg'/>";
   }
 }
 
