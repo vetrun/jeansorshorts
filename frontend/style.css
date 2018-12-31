@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .page {
@@ -29,7 +30,6 @@
   background-color: #B2D6FF;
   height: 77vh;
   font-size: 3vw;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .footer {
