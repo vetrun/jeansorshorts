@@ -20,14 +20,15 @@
 
 .header {
   background-color: #B2D6FF;
-  height: 15vh;
+  height: 18vh;
   font-size: 4vw;
+  padding-top: 30px;
 }
 
 .content {
   background-color: #B2D6FF;
-  height: 80vh;
-  font-size: 2vw;
+  height: 77vh;
+  font-size: 3vw;
 }
 
 .footer {
