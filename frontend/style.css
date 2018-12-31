@@ -20,14 +20,14 @@
 
 .header {
   background-color: #B2D6FF;
-  height: 20vh;
+  height: 15vh;
   font-size: 4vw;
 }
 
 .content {
   background-color: #B2D6FF;
-  height: 75vh;
-  font-size: 3vw;
+  height: 80vh;
+  font-size: 2vw;
 }
 
 .footer {

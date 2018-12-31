@@ -41,9 +41,9 @@ function jeansOrShorts(data) {
   document.getElementById('currentWeather').innerHTML = `${celcius.toFixed(1)}°C  ${fahrenheit.toFixed(1)}°F`;
 
   if (data.main.temp_max < 295.15) {
-    document.getElementById('jeansOrShorts').innerHTML = "Jeans";
+    document.getElementById('jeansOrShorts').innerHTML = "<img src='images/jeans.jpg'/>";
   } else {
-    document.getElementById('jeansOrShorts').innerHTML = "Shorts";
+    document.getElementById('jeansOrShorts').innerHTML = "<img src='images/shorts.png'/>";
   }
 }
 
