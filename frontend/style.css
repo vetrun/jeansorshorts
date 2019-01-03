@@ -49,6 +49,7 @@
 .illustration img {
   max-width: 90vw;
   max-height: 50vh;
+  border-radius: 8px;
 }
 
 .loc {
