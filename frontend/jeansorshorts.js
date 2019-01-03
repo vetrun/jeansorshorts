@@ -25,19 +25,19 @@ function getWeather(location) {
         }
 
         response.json().then(function(data) {
-          console.log(data);
           jeansOrShorts(data);
         });
       }
     )
     .catch(function(err) {
-      console.log('Fetch Error :-S', err);
+      document.getElementById('jeansOrShorts').innerHTML = "Cannot connect to API";
   });
 }
 
 function jeansOrShorts(data) {
   let celcius = convertUnits(data.main.temp_max, "c");
   let fahrenheit = convertUnits(data.main.temp_max, "f");
+  document.getElementById('location').innerHTML = `${data.name}`;
   document.getElementById('currentWeather').innerHTML = `${celcius.toFixed(1)}°C / ${fahrenheit.toFixed(1)}°F`;
 
   if (data.main.temp_max < 295.15) {

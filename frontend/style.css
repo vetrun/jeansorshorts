@@ -51,6 +51,10 @@
   max-height: 50vh;
 }
 
+.loc {
+  font-size: 2vw;
+}
+
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
 }
