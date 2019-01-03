@@ -21,18 +21,26 @@
 
 .header {
   background-color: #B2D6FF;
-  height: 18vh;
+  height: 22vh;
   font-size: 4vw;
   padding-top: 30px;
 }
 
 .content {
   background-color: #B2D6FF;
-  height: 77vh;
+  height: 58vh;
   font-size: 3vw;
 }
 
+.details {
+  background-color: #B2D6FF;
+  height: 15vh;
+  font-size: 4vw;
+}
+
 .footer {
+  flex-direction: row;
+  white-space: pre-wrap;
   background-color: #B2D6FF;
   height: 5vh;
   font-size: 1vw;
