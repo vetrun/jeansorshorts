@@ -22,28 +22,26 @@
 .header {
   background-color: #B2D6FF;
   height: 22vh;
-  font-size: 4vw;
   padding-top: 30px;
 }
 
 .content {
   background-color: #B2D6FF;
   height: 58vh;
-  font-size: 3vw;
+  font-size: 3vmax;
 }
 
 .details {
   background-color: #B2D6FF;
   height: 15vh;
-  font-size: 4vw;
+  font-size: 4vmax;
 }
 
 .footer {
   flex-direction: row;
-  white-space: pre-wrap;
   background-color: #B2D6FF;
   height: 5vh;
-  font-size: 1vw;
+  font-size: 1vmax;
 }
 
 .illustration img {
@@ -53,7 +51,11 @@
 }
 
 .loc {
-  font-size: 2vw;
+  font-size: 2vmax;
+}
+
+a {
+  margin: 0 3px;
 }
 
 /* Mobile Styles */
