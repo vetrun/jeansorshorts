@@ -20,28 +20,35 @@
 }
 
 .header {
-  background-color: #B2D6FF;
+  background-color: #F4F3F2;
   height: 22vh;
   padding-top: 30px;
 }
 
 .content {
-  background-color: #B2D6FF;
+  background-color: #F4F3F2;
+  flex-direction: row;
   height: 58vh;
   font-size: 3vmax;
 }
 
 .details {
-  background-color: #B2D6FF;
+  background-color: #F4F3F2;
   height: 15vh;
   font-size: 4vmax;
 }
 
 .footer {
   flex-direction: row;
-  background-color: #B2D6FF;
+  background-color: #F4F3F2;
   height: 5vh;
   font-size: 1vmax;
+}
+
+.logo img {
+  max-width: 90vw;
+  max-height: 20vh;
+  border-radius: 8px;
 }
 
 .illustration img {
