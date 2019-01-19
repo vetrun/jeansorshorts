@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-family: courier;
   color: 	#696969;
 }
 
@@ -31,7 +31,7 @@
   flex-direction: row;
   height: 58vh;
   font-size: 3vmax;
-  background-image: url("./images/background.png");
+  background-image: url('./images/background.png');
   background-size: contain;
 }
 
