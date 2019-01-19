@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+  color: 	#696969;
 }
 
 .page {
@@ -22,7 +23,7 @@
 .header {
   background-color: #F4F3F2;
   height: 22vh;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
 .content {
@@ -30,6 +31,8 @@
   flex-direction: row;
   height: 58vh;
   font-size: 3vmax;
+  background-image: url("./images/background.png");
+  background-size: contain;
 }
 
 .details {
@@ -54,7 +57,19 @@
 .illustration img {
   max-width: 90vw;
   max-height: 50vh;
-  border-radius: 8px;
+  position: relative;
+	background-color: #fff;
+  padding: 7px;
+  padding-bottom: 35px;
+	margin: 10px;
+	text-align: center;	
+  -moz-box-shadow: 1px 1px 3px #222;
+  -moz-transform: rotate(-5deg);
+  -webkit-box-shadow: 1px 1px 3px #222;
+  -webkit-transform: rotate(-5deg);
+  box-shadow: 1px 1px 3px #222;
+  -o-transform: rotate(-5deg);
+	transform: rotate(-5deg);
 }
 
 .loc {
@@ -64,7 +79,14 @@
 a {
   margin: 0 3px;
   text-decoration: none;
-  color: #000000
+}
+
+h2 {
+  background: #C15F4C;
+  padding: 4px 8px;
+  color: #F4F3F2;
+  margin: 0;
+  font-size: 2vmax;
 }
 
 /* Mobile Styles */

@@ -6,7 +6,7 @@ function geoSuccess(position) {
 }
 
 function geo_error() {
-  document.getElementById('jeansOrShorts').innerHTML = "We can't find your location";
+  document.getElementById('jeansOrShorts').innerHTML = "<h2>We can't find your location</h2>";
 }
 
 function getWeather(location) {
@@ -20,7 +20,7 @@ function getWeather(location) {
     .then(
       function(response) {
         if (response.status !== 200) {
-          document.getElementById('jeansOrShorts').innerHTML = "We can't get any weather data";
+          document.getElementById('jeansOrShorts').innerHTML = "<h2>We can't get any weather data</h2>";
           return;
         }
 
@@ -30,7 +30,7 @@ function getWeather(location) {
       }
     )
     .catch(function(err) {
-      document.getElementById('jeansOrShorts').innerHTML = "Cannot connect to API";
+      document.getElementById('jeansOrShorts').innerHTML = "<h2>Cannot connect to API</h2>";
   });
 }
 
