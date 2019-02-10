@@ -6,7 +6,7 @@ function geoSuccess(position) {
 }
 
 function geo_error() {
-  document.getElementById('jeansOrShorts').innerHTML = "<h2>We can't find your location</h2>";
+  document.getElementById('jeansOrShorts').innerHTML = '<h2>We cannot find your location</h2>';
 }
 
 function getWeather(location) {
@@ -20,7 +20,7 @@ function getWeather(location) {
     .then(
       function(response) {
         if (response.status !== 200) {
-          document.getElementById('jeansOrShorts').innerHTML = "<h2>We can't get any weather data</h2>";
+          document.getElementById('jeansOrShorts').innerHTML = '<h2>We cannot get any weather data</h2>';
           return;
         }
 
@@ -30,30 +30,14 @@ function getWeather(location) {
       }
     )
     .catch(function(err) {
-      document.getElementById('jeansOrShorts').innerHTML = "<h2>Cannot connect to API</h2>";
+      document.getElementById('jeansOrShorts').innerHTML = '<h2>Cannot connect to API</h2>';
   });
 }
 
 function jeansOrShorts(data) {
-  let celcius = convertUnits(data.main.temp_max, "c");
-  let fahrenheit = convertUnits(data.main.temp_max, "f");
-  document.getElementById('location').innerHTML = `${data.name}`;
-  document.getElementById('currentWeather').innerHTML = `${celcius.toFixed(1)}°C / ${fahrenheit.toFixed(1)}°F`;
-
-  if (data.main.temp_max < 295.15) {
-    document.getElementById('jeansOrShorts').innerHTML = "<img src='images/jeans.jpg'/>";
-  } else {
-    document.getElementById('jeansOrShorts').innerHTML = "<img src='images/shorts.jpg'/>";
-  }
-}
-
-function convertUnits(maxtemp, unit) {
-  if (unit == "c") {
-    maxtemp = maxtemp - 273.15;
-  } else {
-    maxtemp = maxtemp * 9/5 - 459.67;
-  }
-  return maxtemp;
+  document.getElementById('location').innerHTML = `${data.location}`;
+  document.getElementById('currentWeather').innerHTML = `${data.celcius}°C / ${data.fahrenheit}°F`;
+  document.getElementById('jeansOrShorts').innerHTML = `<img src='images/${data.clothing}.jpg'/>`;
 }
 
 navigator.geolocation.getCurrentPosition(geoSuccess, geo_error);
