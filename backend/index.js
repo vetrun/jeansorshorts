@@ -2,20 +2,14 @@
 let express = require('express');
 let request = require('request');
 let PORT = process.env.PORT || 3000;
-let DEST_URL = 'http://api.openweathermap.org/data/2.5/weather';
 let app = express();
 
-function convertUnits(maxtemp, unit) {
-  if (unit == 'c') {
-    maxtemp = (maxtemp - 273.15).toFixed(1);
-  } else {
-    maxtemp = (maxtemp * 9/5 - 459.67).toFixed(1);
-  }
-  return maxtemp;
+function toCelcius(maxtemp) {
+  return (( maxtemp - 32) * 5/9).toFixed(1);
 }
 
 function jeansOrShorts(data) {
-  if (data.main.temp_max < 295.15) {
+  if (data['daily']['data'][0]['temperatureHigh'] < 71.6) {
     return 'jeans';
   } else {
     return 'shorts';
@@ -29,20 +23,16 @@ app.use(function(req, res, next) {
 });
 
 app.get('/api', function(req, res) {
-  let args = {
-    lat: req.query.lat,
-    lon: req.query.lon,
-    appid: process.env.APIKEY
-  };
+  if (isNaN(req.query.lat) || isNaN(req.query.lon)) { return res.json('Not a number'); }
 
-  if (isNaN(args.lat) || isNaN(args.lon)) { return res.json('Not a number'); }
+  let DEST_URL = `https://api.darksky.net/forecast/${process.env.APIKEY}/${req.query.lat},${req.query.lon}?exclude=currently,minutely,hourly,alerts,flags`;
 
-  request({url: DEST_URL, qs: args, json: true}, (err, response, body) => {
+  request({url: DEST_URL, json: true}, (err, response, body) => {  
     if (err) { return res.json(err); }
-    let celcius = convertUnits(body.main.temp_max, 'c');
-    let fahrenheit = convertUnits(body.main.temp_max, 'f');
+    let celcius = toCelcius(body['daily']['data'][0]['temperatureHigh']);
+    let fahrenheit = body['daily']['data'][0]['temperatureHigh'];
     let clothing = jeansOrShorts(body);
-    res.json({ location: body.name, celcius: celcius, fahrenheit: fahrenheit, clothing: clothing });
+    res.json({ location: body.timezone, celcius: celcius, fahrenheit: fahrenheit, clothing: clothing });
   });
 });
 

@@ -41,4 +41,3 @@ function jeansOrShorts(data) {
 }
 
 navigator.geolocation.getCurrentPosition(geoSuccess, geo_error);
-
