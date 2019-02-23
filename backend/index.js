@@ -23,12 +23,13 @@ app.use(function(req, res, next) {
 });
 
 app.get('/api', function(req, res) {
-  if (isNaN(req.query.lat) || isNaN(req.query.lon)) { return res.json('Not a number'); }
+  if (isNaN(req.query.lat) || isNaN(req.query.lon)) { return res.status(500).send('Not a number'); }
 
   let DEST_URL = `https://api.darksky.net/forecast/${process.env.APIKEY}/${req.query.lat},${req.query.lon}?exclude=currently,minutely,hourly,alerts,flags`;
 
   request({url: DEST_URL, json: true}, (err, response, body) => {  
-    if (err) { return res.json(err); }
+    if (err) { return res.status(500).send(err); }
+    if (!body.daily) { return res.status(500).send('API Data Error'); }
     let celcius = toCelcius(body['daily']['data'][0]['temperatureHigh']);
     let fahrenheit = body['daily']['data'][0]['temperatureHigh'];
     let clothing = jeansOrShorts(body);
