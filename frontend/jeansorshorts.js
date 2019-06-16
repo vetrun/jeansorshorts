@@ -1,18 +1,37 @@
 'use strict';
 
 function geoSuccess(position) {
-  let startPos = position;
-  getWeather(startPos);
+  getWeather(position.coords.latitude, position.coords.longitude);
 }
 
 function geo_error() {
-  document.getElementById('jeansOrShorts').innerHTML = '<h2>We cannot find your location</h2>';
+  getIpLocation();
 }
 
-function getWeather(location) {
+function getIpLocation () {
+  let url = new URL('https://get.geojs.io/v1/ip/geo.json');
+
+  fetch(url)
+    .then(
+      function(response) {
+        if (response.status !== 200) {
+          document.getElementById('jeansOrShorts').innerHTML = '<h2>We cannot get any location data for you IP</h2>';
+        }
+
+        response.json().then(function(data) {
+          getWeather(data.latitude, data.longitude);
+        });
+      }
+    )
+    .catch(function(err) {
+      document.getElementById('jeansOrShorts').innerHTML = '<h2>Cannot connect to IP Geolocation API</h2>';
+  });
+}
+
+function getWeather(lattitude, longitude) {
 
   let url = new URL('https://jeansorshorts.com/api'),
-    params = {lat:location.coords.latitude, lon:location.coords.longitude};
+    params = {lat:lattitude, lon:longitude};
 
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
