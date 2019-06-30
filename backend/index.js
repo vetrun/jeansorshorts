@@ -4,11 +4,6 @@ let request = require('request');
 let PORT = process.env.PORT || 3000;
 let app = express();
 
-function validateInput(data) {
-  if (!data.daily) { return res.status(500).send('API Data Error'); }
-  return data;
-}
-
 function toCelcius(maxtemp) {
   return (( maxtemp - 32) * 5/9).toFixed(1);
 }
@@ -34,7 +29,7 @@ app.get('/api', function(req, res) {
 
   request({url: DEST_URL, json: true}, (err, response, body) => {  
     if (err) { return res.status(500).send(err); }
-    validateInput(body);
+    if (!body.daily) { return res.status(500).send('API Data Error'); }
     let celcius = toCelcius(body['daily']['data'][0]['temperatureHigh']);
     let fahrenheit = body['daily']['data'][0]['temperatureHigh'];
     let clothing = jeansOrShorts(body);
@@ -50,4 +45,3 @@ app.listen(PORT, function() {
 const myModule = module.exports = app;
 myModule.jeansOrShorts = jeansOrShorts;
 myModule.toCelcius = toCelcius;
-myModule.validateInput = validateInput;

@@ -22,11 +22,4 @@ describe("Unit Tests", function() {
       assert.equal(index.toCelcius(50), "10.0");
     });
   });
-
-  describe("validateInput", function() {
-
-    it("checks that the api data is valid", function() {
-      assert.equal(index.validateInput(fixtures.dataShorts), fixtures.dataShorts);
-    });
-  });
 });
