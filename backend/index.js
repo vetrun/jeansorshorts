@@ -48,7 +48,7 @@ app.get('/api', function(req, res) {
 });
 
 app.get('/api/geolocation', function(req, res) {
-  let ip = process.env.CLIENTIP;
+  let ip = req.headers['x-real-ip'];
   if (!validateIp(ip)) { return res.status(500).send('Not a valid IP'); }
   let DEST_URL = `https://get.geojs.io/v1/ip/geo/${ip}.json`;
 
