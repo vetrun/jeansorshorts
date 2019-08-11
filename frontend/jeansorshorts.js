@@ -9,8 +9,7 @@ function geo_error() {
 }
 
 function getIpLocation () {
-  let url = new URL('https://get.geojs.io/v1/ip/geo.json');
-
+  let url = new URL('https://jeansorshorts.com/api/geolocation');
   fetch(url)
     .then(
       function(response) {
@@ -19,6 +18,7 @@ function getIpLocation () {
         }
 
         response.json().then(function(data) {
+          console.log(data.latitude);
           getWeather(data.latitude, data.longitude);
         });
       }

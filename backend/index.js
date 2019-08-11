@@ -16,6 +16,17 @@ function jeansOrShorts(data) {
   }
 }
 
+function validateInput(lat, lon) {
+  return (isNaN(lat) || isNaN(lon) ? false : true);
+} 
+
+function validateIp(ip) {  
+  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ip)) {  
+    return (true);
+  } 
+  return (false);
+}  
+
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -23,8 +34,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/api', function(req, res) {
-  if (isNaN(req.query.lat) || isNaN(req.query.lon)) { return res.status(500).send('Not a number'); }
-
+  if (!validateInput(req.query.lat, req.query.lon)) { return res.status(500).send('Not a valid location'); }
   let DEST_URL = `https://api.darksky.net/forecast/${process.env.APIKEY}/${req.query.lat},${req.query.lon}?exclude=currently,minutely,hourly,alerts,flags`;
 
   request({url: DEST_URL, json: true}, (err, response, body) => {  
@@ -34,6 +44,18 @@ app.get('/api', function(req, res) {
     let fahrenheit = body['daily']['data'][0]['temperatureHigh'];
     let clothing = jeansOrShorts(body);
     res.json({ location: body.timezone, celcius: celcius, fahrenheit: fahrenheit, clothing: clothing });
+  });
+});
+
+app.get('/api/geolocation', function(req, res) {
+  let ip = process.env.CLIENTIP;
+  if (!validateIp(ip)) { return res.status(500).send('Not a valid IP'); }
+  let DEST_URL = `https://get.geojs.io/v1/ip/geo/${ip}.json`;
+
+  request({url: DEST_URL, json: true}, (err, response, body) => {  
+    if (err) { return res.status(500).send(err); }
+    if (!body.latitude || !body.longitude) { return res.status(500).send('API Data Error'); }
+    res.json({ latitude: body.latitude, longitude: body.longitude });
   });
 });
 

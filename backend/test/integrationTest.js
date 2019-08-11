@@ -10,7 +10,7 @@ describe('API Integration Tests', function() {
       request(app) .get('/api')
         .end(function(err, res) { 
           expect(res.statusCode).to.equal(500); 
-          expect(res.text).to.equal('Not a number');
+          expect(res.text).to.equal('Not a valid location');
           done(); 
         }); 
     });
