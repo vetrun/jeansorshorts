@@ -4,7 +4,7 @@ function geoSuccess(position) {
   getWeather(position.coords.latitude, position.coords.longitude);
 }
 
-function geo_error() {
+function geoError() {
   getIpLocation();
 }
 
@@ -58,4 +58,9 @@ function jeansOrShorts(data) {
   document.getElementById('jeansOrShorts').innerHTML = `<img src='images/${data.clothing}.jpg'/>`;
 }
 
-navigator.geolocation.getCurrentPosition(geoSuccess, geo_error);
+var geoOptions = {
+  enableHighAccuracy: true,
+  timeout: 10000,
+};
+
+navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
