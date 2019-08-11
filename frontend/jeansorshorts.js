@@ -18,7 +18,6 @@ function getIpLocation () {
         }
 
         response.json().then(function(data) {
-          console.log(data.latitude);
           getWeather(data.latitude, data.longitude);
         });
       }
