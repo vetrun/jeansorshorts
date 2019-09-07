@@ -58,7 +58,7 @@ function jeansOrShorts(data) {
   document.getElementById('jeansOrShorts').innerHTML = `<img src='images/${data.clothing}.jpg'/>`;
 }
 
-var geoOptions = {
+let geoOptions = {
   enableHighAccuracy: true,
   timeout: 10000,
 };
